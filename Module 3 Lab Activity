@@ -1,0 +1,33 @@
+#Module 3 Lab Activity: Problem 1
+#Get the player player if they’d like to play again when they reach the end.
+#if they want to play it again
+    # Type Y for Yes
+#If they don't want to
+    #Type N for No
+
+Yes = "Y"
+No = "N"
+
+user_input= input("Would you like to play again? Type Y for Yes or N for No:")
+
+if user_input == Yes:
+ print("Play again")
+
+if user_input == No:
+ print("Leave the game")
+
+#Problem 2
+#shop.py Problem 2 | Follow up to Lab 2 activity Problem 4
+
+print("Welcome to The Store.\n Selection:\n 1.Controller \n 2.Headset \n 3.Video Game")
+x = input("What items are you purchasing today sir/mam?")
+if x == type("Controller, Headset, & Video Game"):
+    print("Ok that would be $60 dollars sir/mam.")
+y = input("Do you have $60?")
+if y == ("yes"):
+    print("Enjoy your item, have a nice day sir/mam!")
+if y == ("no"):
+    print("Ok well, thank you for stopping by at The Store and have a nice day!")
+
+#If I ever struggle about the If statements then this should help
+
