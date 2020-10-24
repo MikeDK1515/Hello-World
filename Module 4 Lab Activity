@@ -1,0 +1,163 @@
+M4P1 (Problem 1)
+#Module 4 Lab Activity
+#Programmer name
+#Michael Madrigal
+#Date published
+#10/23/2020
+#Description of what the program does
+#This program takes the current time in hours between 0-23
+#and the number of hours the user will wait.
+#It will print what the time is in hours (between 0-23) after the user is done waiting
+#Description of known issues
+#It doesn't give the user the final time in between 0-23
+
+
+currentTimeStr = input("What is the current time (in hours 0-23)?")
+waitTimeStr = input("How many hours do you want to wait?")
+
+currentTimeInt = int(currentTimeStr)
+waitTimeInt = int(waitTimeStr)
+
+finalTimeInt = (currentTimeInt + waitTimeInt) % 24
+print(finalTimeInt)
+
+M4P2 (Problem 2)
+
+#Description of what the program does
+#This program will take a password from the user and print an appropriate message
+#The 'in' keyword checks to see if a value exists somewhere in the given string.
+
+#Description of known issues
+#There's no another greeting or password for "Greetings, hater of pirates!"
+
+
+greeting = input("Hello, possible pirate! What's the password?")
+if greeting in ("Arrr!"):
+	print("Go away, pirate.")
+elif greeting in ("Gold"):
+        print("Greetings, hater of pirates!")
+else:
+    print("Incorrect, you ain't getting my loot")
+    greeting = "Incorrect, you ain't getting my loot"
+    
+M4P3 (Problem 3)
+#Description of what the program does
+#This code returns some mad libs text based on the user input
+#Is the code always returnin the correct input?
+#What do you think I did to write this code that I shouldn't have done?
+
+#Description of known issues
+#User/programmer forgot to add the input function to finally put the mad libs on screen and not the three red arrows.
+
+def change_name(adjective):
+    if adjective == 'red':
+        return 'The quick brown fox jumps over the red dog'
+    elif adjective == 'lazy':
+        return 'The quick brown fox jumps over the lazy dog'
+    elif adjective == 'energetic':
+         return 'The quick brown fox jumps over the energetic dog'
+    elif adjective == 'happy':
+         return 'The quick brown fox jumps over the happy dog'
+    elif adjective == 'sad':
+         return 'The quick brown fox jumps over the sad dog'
+    else:
+         return '"No case for that adjective found!'
+    
+adjective = (input("What adjective you want to pick? Pick either red, lazy, energetic, happy, or sad. Only from this list. *Disclaimer* No caps or spaces"))
+print(change_name(adjective))
+
+M4P4 (Problem 4)
+#Description of what the program does
+#It ask the user their year of origin from either the past. present, and future
+
+# A time traveler has suddenly appeared in your classroom!
+
+# Create a variable representing the traveler's
+# year of origin (e.g., year = 2000)
+# and greet our strange visitor with a different message
+# if he is from the distant past (before 1900),
+# the present era (1900-2020) or from the far future (beyond 2020).
+#Description of known issues
+#There's no beyond 2020 and the 1900 is shown to be the past instead of the present based on the instructions says.
+
+
+year = int(input("Greetings! What is your year of origin? "))
+
+if year <= 1899:
+    print ("Woah, that's the past!")
+elif year < 2020:
+    print ("That's totally the present!")
+elif year == 2021:
+    print ("Far out, that's the future!!")
+
+
+#Side note: The only problem that I faced is that typing and entering 2020 would showned to be blank for no reason.
+
+M4P5 (Problem 5)
+#Description of what the program does
+# It average 3 numeric exam grades, return an average test score, a corresponding letter grade, and a message stating whether the student is passing.
+#Description of known issues
+#There's no invaild function if a student gets an average of 101 or -1 .
+
+# Calculating Grades (ok, let me think about this one)
+
+# Write a program that will average 3 numeric exam grades, return an average test score, a corresponding letter grade, and a message stating whether the student is passing.
+
+# Average   Grade
+# 90+	     A
+# 80-89	     B
+# 70-79	     C
+# 60-69	     D
+# 0-59	     F
+
+# Exams: 89, 90, 90
+# Average: 90
+# Grade: A
+# Student is passing.
+
+# Exams: 50, 51, 0
+# Average: 33
+# Grade: F
+# Student is failing.
+
+exam_one = int(input("Input exam grade one: "))
+
+exam_two = int(input("Input exam grade two: "))
+
+exam_three = int(input("Input exam grade three: "))
+
+avg = (exam_one + exam_two + exam_three) / 3
+
+if avg >= 90 and avg <= 100:
+    letter_grade = "A"
+elif avg >= 80 and avg < 90:
+    letter_grade = "B"
+elif avg > 69 and avg < 80:
+    letter_grade = "C"
+elif avg <= 69 and avg >= 60:
+    letter_grade = "D"
+elif avg <= 60 and avg >= 0:
+    letter_grade = "F"
+else:
+    print("Invalid")
+    letter_grade = "Invalid"
+
+print("Average: " + str(avg))
+print("Grade: " + letter_grade)
+
+if letter_grade == "F":
+    print("Student is failing.")
+
+elif letter_grade == "Invalid":
+    print("Please Try Again")
+else:
+    print("Student is passing.")
+
+
+
+
+
+
+
+
+
