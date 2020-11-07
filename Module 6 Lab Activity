@@ -1,0 +1,93 @@
+#Module 6 Lab Activity
+#Programmer name
+#Michael Madrigal
+#Date published
+#11/7/2020
+
+
+#Description of what the program does
+#A program that calls each function and prints the result from the my_module.
+#Description of known issues
+#Before, there's no functions in the program.
+
+import my_module
+|
+|
+↓ 
+
+
+#Description of what the program does
+#A program that uses a for loop to print random integers between 25 and 35.
+#Description of known issues
+#Before, there's no functions in the program.
+
+#1. Random Looping
+
+import random
+
+import math
+
+print("The 10 random numbers between 25 and 35 is")
+input()
+for i in range(10):
+    print(random.randint(25,35))
+input()
+
+
+#2. Random Parameter
+
+#Description of what the program does
+#A program that takes a list as a parameter and returns a random element from that list.
+#Description of known issues
+#Before, there's no functions in the program.
+print("The president would randomly selected?")
+input()
+president = ["Trump","Biden"]
+print(random.choice(president))
+input()
+
+#3. Random odd 
+
+#Description of what the program does
+#A program that returns a random odd integer between 0 and 100.
+#Description of known issues
+#Before, there's no functions in the program.
+
+print("The random odd number would it be?")
+input()
+def odd():
+
+    for n in range(100):
+        number = random.randint(0,100)
+        if number % 2 == 1:
+            print(number)
+            break
+
+odd()
+input()
+
+#4. Pythagorean Theorem
+
+#Description of what the program does
+#A program that calculates the Pythagorean theorem using functions found in the math module.
+#Description of known issues
+#Before, there's no functions in the program.
+
+print("The pythagorean theorem for 12 and 5 is...")
+def c_squared(a,b):
+   
+
+    c = math.sqrt(a**2 + b**2)
+
+    return c
+
+
+print(c_squared(a = 12, b = 5))
+
+
+    
+
+
+
+
+
