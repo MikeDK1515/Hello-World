@@ -1,0 +1,77 @@
+#Module 7 Lab Activity 
+#Programmer name
+#Michael Madrigal
+#Date published
+#11/12/2020
+
+Problem 1 - Infinite
+#Description of what the program does
+#A program that writes an infinite while loop that prints “Infinite” an infinite number of times.
+#Description of known issues
+#Before, there's no functions in the program.
+
+#Note to self:
+#While loop = Infinite
+#For loop = Certain amount of time
+
+while True:
+    print("Infinite")
+    
+    
+
+Problem 2 - Random Integers in while
+
+#Description of what the program does
+#A program that uses while loop to print random integers between 25 and 35.
+#Description of known issues
+#Before, there's no functions in the program.
+
+import random
+
+count = 1
+while count <= 10:
+    print(random.randint(25,35))
+    count += 1
+
+
+Problem 3 - Check Inputs
+
+#Description of what the program does
+#A program that takes a user input, then uses a while loop to check if that input is the letter A, B, or C.
+#Description of known issues
+#Before, there's no functions in the program.
+
+
+user_input = input("Type either A,B,or C").upper()
+while user_input not in ["A","a","B","b","C","c"]:
+    user_input = input("Type either A,B,or C")
+
+
+Problem 4- Archery
+
+#Description of what the program does
+#A program that keeps track of the score in archery.
+#Description of known issues
+#Before, there's no functions in the program.
+import random
+scoretracker = 0
+Card = []
+arrows = 10
+
+while arrows > 0:
+    scoreboard = random.randint(0,10)
+    Card.append(scoreboard)
+
+    if scoreboard == 0:
+        scoretracker -= 0
+        arrows -= 0
+    elif scoreboard == 10:
+        scoretracker += 20
+        arrows -= 1
+    else:
+        scoretracker += scoreboard
+        arrows -= 1
+
+print(scoretracker,Card)    
+
+
