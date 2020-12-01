@@ -1,0 +1,32 @@
+#Note: This file represents the main character and the monster of the game
+#Part of Module 8 Lab Activity
+import random
+
+
+#Properties (variables)
+#actions (functions)
+
+#Properties
+#(Hiroshi's stats)
+class player:
+    def _init_(maxhealth, health, attack):
+        self.maxhealth
+        self.health
+        self.attack
+
+    def _set_():
+        self.maxhealth = 5
+        self.health = maxhealth
+        self.attack = 1        
+
+#The Monster's stats
+class monster:
+    def _init_(maxhealth,health, attack):
+        self.maxhealth 
+        self.health 
+        self.attack 
+
+    def _set_():
+        self.maxhealth = 100
+        self.health = maxhealth
+        self.attack = random.randint(1,2) 
