@@ -1,0 +1,1331 @@
+#Final Project - Adventure Game (Ao Oni 2)
+#Programmer name
+#Michael Madrigal
+#Date published
+#12/4/2020
+#Description of what the program does
+#This file talks about the Main Game controlling each section to start even the dialogues.
+#Description of known issues
+#No functions to solve for.
+#Update: The battle mechanic has been added
+
+
+#This part will control the section flow of the game 
+
+import Hiroshi_MainCharacter
+import Monster
+import Section1_AoOni2
+import Section2_AoOni2
+import Section3_AoOni2
+import Section4_AoOni2
+import Section5_AoOni2
+
+
+#Hiroshi_MainCharacter
+#Description of what the program does
+#This file represents the main character.
+#Description of known issues
+#No functions to solve for.
+#Update: The battle mechanic has been added
+
+#Properties (variables)
+#actions (functions)
+#Properties
+#(Hiroshi's stats)
+class player:
+    def __init__(self,health, attack):
+        self.health = health
+        self.attack = attack
+
+    def _set_():
+        self.health = maxhealth
+        self.attack = 1
+        
+        
+#Monster
+#Description of what the program does
+#This file represents the monster of the game.
+#Description of known issues
+#No functions to solve for.
+#Update: The battle mechanic has been added
+
+#The Monster's stats
+import random
+
+class monster:
+    def __init__(self,health, attack): 
+        self.health = health
+        self.attack = attack 
+
+    def _set_():
+        self.health = maxhealth
+        self.attack = random.randint(1,2)
+        
+ 
+ #Section 1 of AoOni2
+ #Description of what the program does
+#This file talks about the section 1 in Ao Oni 2.
+#Description of known issues
+#No functions to solve for.
+#Update: The battle mechanic has been added
+
+#Section 1 - The Mansion
+import Hiroshi_MainCharacter
+import Monster 
+inventory = []
+
+def start():
+    print("Press Enter to begin Section 1 - The Mansion")
+    input()
+    print("On the outskirts of the city, there’s an uninhabited mansion. It has been months since I escaped that monster, and the rumors are true that the purple monster lives in a mansion.")
+    input()
+    print("Narrator: It has been months since Hiroshi escaped from the monster and the rumors before are true of a monster living in a mansion.")
+    input()
+    print("Hiroshi: I still could not imagine if my classmates are alive or not. So, I will come back to that mansion because I am Hiroshi and I am a student in middle school,")
+    print("and I will go to a mansion to save my classmates from getting eaten by this strange monster")
+    input()
+    print("Narrator: Hiroshi has been thinking about his classmates that are missing in the mansion, so he decides to revisit the mansion to rescue his classmates.")
+    input()
+    startroom()
+
+#Player chooses to enter the mansion what he should do?
+def startroom():
+    print("You entered the mansion but you heard a sound coming from the hallways. Could it be a monster from before following you around now? What would you like to do?\nC - Go to the living room's door \nX - Go upstair's door \nZ - Go to the basement's door")
+    choice1=input()
+    if choice1 == "C": 
+         print("It's open")
+         input()
+         print("You entered the living room and the monster has lost track of you")
+         secondroom()
+    else:
+        print("It's locked")
+        input()
+        print("The monster encounters you from behind.")
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        choice1=input("\nA - Attack \nB - Run")
+        print(choice1)
+        while choice1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                startroom()
+            choice1=input("\nA - Attack \nB - Run")
+        if choice1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            startroom()
+
+#Note: When it's a gameover the "startroom()" will restart all way up to the startroom():
+
+def secondroom():
+    print("Once you head to the living room, you see something on the wall and there's a chest nearby it")
+    input()
+    print("It said SODWR with the number 3 . What does this mean?")
+    input()
+    print("Could it be a Caesar Cipher?")
+    input()
+    print("You decide to check on the chest")
+    input()
+    print("Nice! You found a key for the next room")
+    input()
+    print("Do you want to keep the key? yes/no")
+    choice2=input()
+    if choice2=="yes":
+        inventory.append("Key")
+        print(inventory)
+        input()
+        thirdroom()
+    else:
+        print("You leave the key on the chest")
+        input()
+        startroom()
+
+def thirdroom():
+    print("What would you like to do?\nQ - Go upstair's door \nW - Go to the basement's door")
+    choice3=input()
+    if choice3 == "Q":
+        print("The upstair's door is now unlocked")
+        inventory.remove("Key")
+        print(inventory)
+        input()
+        print("You entered upstair's door and the monster has lost track of you")
+        fourthroom()
+    else:
+        print("It's locked")
+        input()
+        print("The monster catches you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        choice1=input("\nA - Attack \nB - Run")
+        print(choice1)
+        while choice1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                inventory.remove("Key")
+                print(inventory)
+                startroom()
+            choice1=input("\nA - Attack \nB - Run")
+        if choice1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            thirdroom()
+        
+      
+     
+def fourthroom():
+    print("Inside upstair's door, you see something on the wall")
+    input()
+    print("It's a trival quiz!")
+    input()
+    print("Topic: Philosophy")
+    input()
+    print("The question says that who wrote the Allegory of the Cave?")
+    input()
+    print("The choices are \nA - Plato \nB - Kant \nC - Aristole \nD - Socrates")
+    choice4=input()
+    if choice4 == "A":
+        print("Correct!")
+        input()
+        print("You earned yourself a basement key!")
+        inventory.append("Basement key")
+        print(inventory)
+        input()
+        fifthroom()
+    else:
+        print("Wrong Answer!")
+        input()
+        print("The monster catches you from behind.")
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        choice1=input("\nA - Attack \nB - Run")
+        print(choice1)
+        while choice1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                inventory.remove("Key")
+                print(inventory)
+                startroom()
+            choice1=input("\nA - Attack \nB - Run")
+        if choice1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            fourthroom()
+        
+
+def fifthroom():
+    print("What would you like to do? \nW - Go to the basement's door")
+    choice5=input()
+    if choice5 == "W":
+        print("The basement's door is now unlocked")
+        inventory.remove("Basement key")
+        print(inventory)
+        input()
+        print("Section 1 ends and you could no longer go back to Section 1")
+        input()
+    else:
+        print("Press W next time")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        choice1=input("\nA - Attack \nB - Run")
+        print(choice1)
+        while choice1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                fifthroom()
+            choice1=input("\nA - Attack \nB - Run")
+        if choice1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            fifthroom()
+            input()
+
+
+        
+        
+
+start()
+
+
+#Section 2 of Ao Oni
+#Description of what the program does
+#This file talks about the section 2 in Ao Oni 2.
+#Description of known issues
+#No functions to solve for.
+#Update: The battle mechanic has been added
+
+#Section 2 - The Basement
+import Hiroshi_MainCharacter
+import Monster
+inventory = []
+
+#Intro for Section 2 - The Basement
+def intro():
+    input()
+    input("Press Enter to begin Section 2 - The Basement")
+    input()
+    print("Narrator: Hiroshi arrives in the basement to find his classmates. Where he sees the floor darker and the atmosphere of the basement sounded eerie.")
+    input()
+    print("He asks himself that the basement can maybe help to find clues for his friends’ whereabouts before the monster eats them to death.")
+    input()
+    print("Hiroshi: The basement here seems so eerie and floors are darker than it was on the first floor and second floor. I need to know where my friends before the monster get to them. I hope this place can show me around the clues of their whereabouts.")
+    input()
+    firstarea()
+
+def firstarea():
+    print("Where you want to go first? \nA - Bathroom \nB - Library \nC - Annex")
+    decision1=input()
+    if decision1 == "A":
+        print("It's open")
+        input()
+        print("You entered the Bathroom.")
+        input()
+        secondarea()
+    else:
+        print("It's locked")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        decision1=input("\nA - Attack \nB - Run")
+        print(decision1)
+        while decision1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                firstarea()
+            decision1=input("\nA - Attack \nB - Run")
+        if decision1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            firstarea()
+            input()
+
+
+    
+
+def secondarea():
+    print("Inside the Bathroom, you see the bathtub covered in blood. Would you like to drain the bathtub? Y/N")
+    decision2=input()
+    if decision2 == "Y":
+        print("The bathtub has been drained")
+        input()
+        print("You found the key to the Library")
+        inventory.append("Key")
+        print(inventory)
+        input()
+        print("Some of the blood is still remains on the bathtub, but it's showing an message to you")
+        input()
+        print("DIORDNA. It looks like the word is in backwords. I wonder what does it show?")
+        input()
+        thirdarea()
+    else:
+        firstarea()
+
+def thirdarea():
+   print("Where you want to go now? \nA - Library \nB - Annex")
+   decision3=input()
+   if decision3 == "A":
+       print("It's open")
+       inventory.remove("Key")
+       print(inventory)
+       input()
+       print("You entered the Library area")
+       input()
+       fourtharea()
+   else:
+        print("It's locked")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        decision1=input("\nA - Attack \nB - Run")
+        print(decision1)
+        while decision1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                inventory.remove("Key")
+                print(inventory)
+                firstarea()
+            decision1=input("\nA - Attack \nB - Run")
+        if decision1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            thirdarea()
+            input()
+
+def fourtharea():
+    print("Once you enter the Library, there's a book that is open. It's also showing the message")
+    input()
+    print("W i n d o w s  1 0")
+    input()
+    print("After looking at the book, you decided to go over at the safe near the bookshelves")
+    input()
+    print("It's another trival quiz")
+    input()
+    print("Topic: CSS255")
+    input()
+    print("Question 1: What OS does Samsung or Google use for moblile phones? \nA - Apple iOS \nB - Android \nC - Windows 10 \nD - Linux")
+    decision4=input()
+    if decision4 == "B":
+        print("Correct!")
+        input()
+        print("Next Question")
+        input()
+        fourtharea2()
+    else:
+        print("Wrong Answer")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        decision1=input("\nA - Attack \nB - Run")
+        print(decision1)
+        while decision1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                firstarea()
+            decision1=input("\nA - Attack \nB - Run")
+        if decision1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            fourtharea()
+            input()
+
+def fourtharea2():
+    print("Question 2: What OS does Microsoft use for their PCs? \nA - Linux \nB - Mac iOS \nC - Chrome OS \nD - Windows 10") 
+    decision5=input()
+    if decision5 == "D":
+        print("Correct!")
+        input()
+        print("You earned yourself a Annex Key!")
+        inventory.append("Annex Key")
+        print(inventory)
+        input()
+        fiftharea()
+    else:
+        print("Wrong Answer!")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        decision1=input("\nA - Attack \nB - Run")
+        print(decision1)
+        while decision1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                fourtharea()
+            decision1=input("\nA - Attack \nB - Run")
+        if decision1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            fourtharea2()
+            input()
+
+def fiftharea():
+    print("Where you want to go now? \nZ - The Annex's door")
+    decision6=input()
+    if decision6 == "Z":
+        print("The Annex's door is now unlocked")
+        inventory.remove("Annex Key")
+        print(inventory)
+        input()
+        print("Section 2 ends and you could no longer go back to Section 2")
+        input()
+    else:
+        print("Press Z next time")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        decision1=input("\nA - Attack \nB - Run")
+        print(decision1)
+        while decision1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                input()
+                inventory.remove("Annex Key")
+                print(inventory)
+                firstarea()
+            decision1=input("\nA - Attack \nB - Run")
+        if decision1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            fiftharea()
+            input()
+       
+ intro()
+ 
+ 
+ #Section 3 of Ao Oni 2
+ #Description of what the program does
+#This file talks about the section 3 in Ao Oni 2.
+#Description of known issues
+#No functions to solve for.
+#Update: The battle mechanic has been added
+
+
+
+#Section 3 - The Annex
+import Hiroshi_MainCharacter
+import Monster
+inventory = []
+
+#Intro for Section 3 - The Annex
+def intro():
+    input()
+    print("Press Enter to begin Section 3 - The Annex")
+    input()
+    print("Narrator: Hiroshi is at the Annex where he did not get a single clue of his friends’whereabouts in the basement. He thinks the Annex could be the place to find them, but he seems worried that the Annex area could be a dangerous spot for his friends.")
+    input()
+    print("So he decides to keep on moving forward.")
+    input()
+    print("*Hiroshi enters The Annex*")
+    input()
+    print("Hiroshi: Dang it not a single clue for their whereabouts. If I were them where would I be?")
+    input()
+    print("Hiroshi: Hmm... maybe the Annex would be a good place to find them but luckily, I am here at the Annex.")
+    input()
+    print("Hiroshi: Why this place is quite dark, and the floors are red? Do not tell me something bad happening here.")
+    input()
+    print("I got to keep going otherwise the monster would kill them.")
+    input()
+    firstlevel()
+
+def firstlevel():
+    print("Where you want to go first? \nA - Dinning Room \nB - Nursey \nC - The Old Building's door")
+    option1=input()
+    if option1 == "A":
+        print("It's open")
+        input()
+        print("You entered the Dinning Room.")
+        input()
+        secondlevel()
+    else:
+        print("It's locked")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        option1=input("\nA - Attack \nB - Run")
+        print(option1)
+        while option1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                input()
+                firstlevel()
+            option1=input("\nA - Attack \nB - Run")
+        if option1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            firstlevel()
+            input()
+       
+        
+
+def secondlevel():
+    print("Inside the Dinning Room, you see a bunch of candles in one big table.")
+    input()
+    print("Also, there's a letter in the table. Would you like to open the letter? yes/no")
+    option2=input()
+    if option2 == "yes":
+        print("Inside the letter you see a message and a key.")
+        input()
+        print("You found a key to the Nursery!")
+        input()
+        inventory.append("Key")
+        print(inventory)
+        input()
+        print("The message says 'W H I L E' ")
+        input()
+        thirdlevel()
+        input()
+    else:
+        firstlevel()
+
+def thirdlevel():
+    print("Where you want to go now? \nA - Nursery \nB - The Old Building's door")
+    option3=input()
+    if option3 == "A":
+       print("It's open")
+       inventory.remove("Key")
+       print(inventory)
+       input()
+       print("You entered the Nursery")
+       input()
+       fourthlevel()
+    else:
+        print("It's locked")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        option1=input("\nA - Attack \nB - Run")
+        print(option1)
+        while option1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                inventory.remove("Key")
+                print(inventory)
+                firstlevel()
+            option1=input("\nA - Attack \nB - Run")
+        if option1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            thirdarea()
+            input()
+
+def fourthlevel():
+    print("Once you enter the Nursery, there's a teddy bear with toys near the safe.")
+    input()
+    print("Would you like to interact with the safe? yes/no")
+    option4=input()
+    if option4 == "yes":
+        print("It's trival time!")
+        input()
+        print("Topic: CSS 225")
+        input()
+        fourthlevel2()
+    else:
+        thirdlevel()
+
+def fourthlevel2():
+    print("Question 1: An infinite ____ loop that prints infinite number of times.  \nA - for \nB - print \nC - while \nD - if") 
+    option5=input()
+    if option5 == "C":
+        print("Correct!")
+        input()
+        print("You earned yourself The Old Building Key!")
+        inventory.append("The Old Building Key")
+        print(inventory)
+        input()
+        fifthlevel()
+    else:
+        print("Wrong Answer")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        option1=input("\nA - Attack \nB - Run")
+        print(option1)
+        while option1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                firstlevel()
+            option1=input("\nA - Attack \nB - Run")
+        if option1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            fourtharea2()
+            input()
+
+def fifthlevel():
+    print("Where you want to go now? \nF - The Old Building's door")
+    option6=input()
+    if option6 == "F":
+        print("The The Old Building's door is now unlocked")
+        inventory.remove("The Old Building Key")
+        print(inventory)
+        input()
+        print("Section 3 ends and you could no longer go back to Section 3")
+    else:
+        print("Press F next time")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        option1=input("\nA - Attack \nB - Run")
+        print(option1)
+        while option1 == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                inventory.remove("The Old Building Key")
+                print(inventory)
+                firstlevel()
+            option1=input("\nA - Attack \nB - Run")
+        if option1 == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            fifthlevel()
+            input()
+         
+    
+
+intro()
+
+#Section 4 of Ao Oni 2
+#Description of what the program does
+#This file talks about the section 4 in Ao Oni 2.
+#Description of known issues
+#No functions to solve for.
+#Update: The battle mechanic has been added
+
+
+
+#Section 4-  The Old Building
+import Hiroshi_MainCharacter
+import Monster
+inventory = []
+
+#Intro for Section 4 - The Old Building
+def intro():
+    input()
+    print("Press Enter to begin Section 4 - The Old Building")
+    input()
+    print("Hiroshi: This place seems different from every floor that I saw earlier in the mansion. I need to look deeper to find the others. Who is the guy in the red? Is that Takuro? Hey Takuro!")
+    input()
+    print("Takuro: Hey Hiroshi, long time no see.")
+    input()
+    print("Hiroshi:I thought you died from that monster when you tripped into that rock? Where are the others by the way?")
+    input()
+    print("Takuro: I managed to distract the monster by hitting him with a rock and I ran away safely, and the others were eaten by the monster.")
+    input()
+    print("Hiroshi:Damn that is terrible to see that way those are our friends. Well, we cannot wait here and cry much longer otherwise the monster will be here.") 
+    input()
+    print("Takuro: You right we cannot cry right now, we need to go and escape our way out of this mansion. Alright, Follow your lead then.")
+    input()
+    print("Narrator: Hiroshi arrives at the old building where he can escape from there and he sees the old building as different and odd about it.")
+    input()
+    print("Narrator: He finds his old friend Takuro, a long-time classmate in the town in Japan, where he goes missing for months and tells Hiroshi that the others are confirmed dead by eating alive from the monster.")
+    input()
+    print("Hiroshi tells Takuro that they need to get out of this mansion before the monster gets them, so Hiroshi leads Takuro the way to escape the mansion.")
+    input()
+    checkpoint1()
+
+def checkpoint1():
+    print("What do you want to do? \nA - Kitchen  \nB - The Shed  \nC - The New Building's door \nD - Ask Takuro")
+    determination=input()
+    if determination == "A":
+        print("It's open")
+        input()
+        print("You entered the Kitchen.")
+        input()
+        checkpoint2()
+    elif determination == "D":
+        print("Takuro: Maybe we should go to the Kitchen first.")
+        input()
+        print("Let's keep going Hiroshi.")
+        input()
+        checkpoint1()
+    else:
+        print("It's locked")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        determination=input("\nA - Attack \nB - Run")
+        print(determination)
+        while determination == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                input()
+                checkpoint1()
+            determination=input("\nA - Attack \nB - Run")
+        if determination == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            checkpoint1()
+            input()
+
+def checkpoint2():
+    print("Inside the Kitchen, there's a mix of a living room with a table and two couches, and more of a kitchen on the top.")
+    input()
+    print("Also, there's a widescreen TV in the table. It's on and it shows a message on it.")
+    input()
+    print("1 8 8 6")
+    input()
+    print("There's a chest near the TV. Would you like to open it? yes/no")
+    determination1=input()
+    if determination1 == "yes":
+        print("You found a key to The Shed!")
+        input()
+        inventory.append("Key")
+        print(inventory)
+        input()
+        checkpoint3()
+        input()
+    else:
+        checkpoint1()
+
+def checkpoint3():
+    print("What do you want to do? \nA - The Shed  \nB - The New Building's door  \nC - Ask Takuro")
+    determination2=input()
+    if determination2 == "A":
+        print("It's open")
+        input()
+        print("You entered The Shed.")
+        input()
+        inventory.remove("Key")
+        print(inventory)
+        checkpoint4()
+    elif determination2 == "C":
+        print("Takuro: Maybe we should go to The Shed first.")
+        input()
+        print("Don't just stand there Hiroshi. Let's keep going.")
+        input()
+        checkpoint3()
+    else:
+        print("It's locked")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        determination=input("\nA - Attack \nB - Run")
+        print(determination)
+        while determination == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                input()
+                inventory.remove("Key")
+                print(inventory)
+                input()
+                checkpoint1()
+            determination=input("\nA - Attack \nB - Run")
+        if determination == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            checkpoint3()
+            input()
+
+def checkpoint4():
+    print("Inside The Shed, it looks like more as a decoration but there's a safe that is attach on a wall.")
+    input()
+    print("Would you like to interact with the safe? yes/no")
+    determination3=input()
+    if determination3 == "yes":
+        print("It's trival time!")
+        input()
+        print("Topic: Misc.")
+        input()
+        checkpoint5()
+    else:
+        checkpoint4()
+
+def checkpoint5():
+    print("What year was NLU founded? \nA - 1945 \nB - 1886 \nC - 1918")
+    determination4=input()
+    if determination4 == "B":
+        print("Correct!")
+        input()
+        print("You earned yourself The New Building Key!")
+        inventory.append("The New Building Key")
+        print(inventory)
+        input()
+        checkpoint6()
+    else:
+        print("Wrong Answer")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        determination=input("\nA - Attack \nB - Run")
+        print(determination)
+        while determination == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                checkpoint1()
+            determination=input("\nA - Attack \nB - Run")
+        if determination == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            checkpoint5()
+            input()
+
+def checkpoint6():
+    print("Where you want to go now? \nF - The New Building's door \nQ - Ask Takuro")
+    determination5=input()
+    if determination5 == "F":
+        print("The New Building's door is now unlocked")
+        inventory.remove("The New Building Key")
+        print(inventory)
+        input()
+        print("Section 4 ends and you could no longer go back to Section 4")
+    elif determination5 == "Q":
+        print("Takuro: Maybe now we should open The New Building's door.")
+        input()
+        print("Takuro: Ok I'm gonna follow your lead Hiroshi.")
+        input()
+        checkpoint6()
+    else:
+        print("Press F next time")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        determination=input("\nA - Attack \nB - Run")
+        print(determination)
+        while determination == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                print("Game Over")
+                inventory.remove("The New Building Key")
+                print(inventory)
+                checkpoint1()
+            determination=input("\nA - Attack \nB - Run")
+        if determination == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            checkpoint6()
+            input()
+        
+        
+        
+intro()
+
+#Section 5 of Ao Oni 2
+#Description of what the program does
+#This file talks about the final section and the fastest section in Ao Oni 2.
+#Description of known issues
+#No functions to solve for.
+#Update: The battle mechanic has been added
+
+
+#Section 5 - The New Building
+import Hiroshi_MainCharacter
+import Monster
+inventory = []
+
+#Intro for Section 5 - The New Building
+def intro():
+    input()
+    print("Press Enter to begin Section 5 - The New Building")
+    input()
+    print("Hiroshi: We are very close to the exit, Takuro.")
+    input()
+    print("Takuro: Nice we can get out of this mansion away from this crazy monster.")
+    input()
+    print("Hiroshi: Yeah I think the chapel would take us the way to the garden's exit.")
+    input()
+    print("Takuro: Alright let's go there then.")
+    input()
+    end1()
+
+def end1():
+    print("What do you want to do? \nA - Chapel  \nB - The Garden's door  \nC - Ask Takuro")
+    solution=input()
+    if solution == "A":
+        print("It's open")
+        input()
+        print("You entered the Chapel.")
+        input()
+        end2()
+    elif solution == "C":
+        print("Takuro: Maybe we should go to the Chapel first.")
+        input()
+        print("Let's keep going Hiroshi.")
+        input()
+        end1()
+    else:
+        print("It's locked")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        solution=input("\nA - Attack \nB - Run")
+        print(solution)
+        while solution == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                input()
+                print("Game Over")
+                end1()
+            solution=input("\nA - Attack \nB - Run")
+        if solution == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            end1()
+            input()
+
+def end2():
+    print("Inside the Chapel, there are smaller spaces that looks like the inside a church that have their own altar.")
+    input()
+    print("The altar is holding a message on a piece of paper.")
+    input()
+    print("Topic: Philosophy ( A R I S T O T L E ) | Topic: CSS 225 ( R A N D O M ) | Topic: CSS 205 ( r m d i r )")
+    input()
+    print("Also, there's a safe near the altar. Would you like to interact with the safe? yes/no")
+    solution1=input()
+    if solution1 == "yes":
+        print("It's trival time!")
+        input()
+        print("Topic: Philosophy.")
+        input()
+        end3()
+    else:
+        end1()
+
+def end3():
+    print("Question 1: Who made or developed the virtue ethics? \nA - Aristotle \nB - MLK \nC - Mill")
+    solution2=input()
+    if solution2 == "A":
+        print("Correct!")
+        input()
+        end4()
+    else:
+        print("Wrong Answer")
+        input()
+        print("The monster encounters you from behind")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        solution=input("\nA - Attack \nB - Run")
+        print(solution)
+        while solution == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                input()
+                print("Game Over")
+                end1()
+            solution=input("\nA - Attack \nB - Run")
+        if solution == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            end3()
+            input()
+
+def end4():
+    print("Topic: CSS 225")
+    input()
+    print("Question 2: What function that will provide you with random numbers? \nA - Turtle \nB - def  \nC - Random")
+    solution3=input()
+    if solution3 == "C":
+        print("Correct!")
+        input()
+        end5()
+    else:
+        print("Wrong Answer")
+        input()
+        print("The monster encounters you from behind")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        solution=input("\nA - Attack \nB - Run")
+        print(solution)
+        while solution == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                input()
+                print("Game Over")
+                end1()
+            solution=input("\nA - Attack \nB - Run")
+        if solution == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            end4()
+            input()
+
+def end5():
+    print("Topic: CSS 205")
+    input()
+    print("Question 3: Which command would a user type to delete a directory that contains no other files or directories within it? \nA - rmdir \nB - mkdir  \nC - cpdir") 
+    solution3=input()
+    if solution3 == "A":
+        print("Correct!")
+        input()
+        print("You earned yourself The Garden Key!")
+        inventory.append("Garden Key")
+        print(inventory)
+        input()
+        end6()
+    else:
+        print("Wrong Answer")
+        input()
+        print("The monster encounters you from behind")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        solution=input("\nA - Attack \nB - Run")
+        print(solution)
+        while solution == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                input()
+                print("Game Over")
+                end1()
+            solution=input("\nA - Attack \nB - Run")
+        if solution == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            end5()
+            input()
+
+def end6():
+    print("Where you want to go now? \nF - The Garden's door \nQ - Ask Takuro")
+    solution4=input()
+    if solution4 == "F":
+        print("The Garden's door is now unlocked")
+        inventory.remove("Garden Key")
+        print(inventory)
+        input()
+        print("Hiroshi: The New Building finally lead us back to the Garden, where we escaped all way to the exit.")
+        input()
+        print("Hiroshi: Running for our lives, we somehow made it back to town safe. The monster was not chasing us anymore.")
+        input()
+        print("Hiroshi: As for the others in the last months are confirmed dead. What was the real identity of that monster? I guess we will never know…")
+        input()
+        print("Narrator: They managed to get out the mansion from The New Building.")
+        input()
+        print("Narrator: This means that Hiroshi and Takuro finally escaped from the purple monster but sadly Hiroshi’s other classmates are eaten to death by the monster.")
+        input()
+        print("Narrator: They never know the identity of the monster that lives in the mansion.")
+        input()
+        print("The End")
+        input()
+        exit()
+    elif solution4 == "Q":
+        print("Takuro: Maybe now we should open The Garden's door.")
+        input()
+        print("Takuro: Ok I'm gonna follow your lead Hiroshi.")
+        input()
+        end6()
+    else:
+        print("Press F next time")
+        input()
+        print("It's locked")
+        input()
+        print("The monster encounters you from behind.")
+        input()
+        purplemonster = Monster.monster(10,1)
+        player = Hiroshi_MainCharacter.player(10,1)
+        solution=input("\nA - Attack \nB - Run")
+        print(solution)
+        while solution == "A":
+            print("You decide to attack the monster")
+            input()
+            purplemonster.health -= player.attack
+            print("The monster attacks you")
+            input()
+            player.health -= purplemonster.attack
+            print("HP", player.health)
+            input()
+            if player.health == 0:
+                input()
+                print("Game Over")
+                inventory.remove("Garden Key")
+                print(inventory)
+                end1()
+            solution=input("\nA - Attack \nB - Run")
+        if solution == "B":
+            print("You decided to run away from the monster")
+            input()
+            print("The monster has lost track of you.")
+            input()
+            end6()
+            input()
+        
+ 
+intro()
+
+
